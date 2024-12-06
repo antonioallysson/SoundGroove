@@ -1,0 +1,130 @@
+/* Geral */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container Principal */
+div {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Formulário de Pesquisa */
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.search-container input {
+  width: 75%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.search-container button {
+  width: 20%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #1db954;  /* Cor do Spotify */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #1ed760;
+}
+
+/* Resultados da Pesquisa */
+h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+li p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+li button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #1db954;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+li button:hover {
+  background-color: #1ed760;
+}
+
+audio {
+  display: block;
+  margin-top: 10px;
+  max-width: 100%;
+}
+
+/* Detalhes da Música */
+.selected-track {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+}
+
+.selected-track p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.selected-track img {
+  max-width: 150px;
+  margin-top: 20px;
+  border-radius: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img {
+  max-width: 300px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+
+.selected-track h2 {
+  text-align: center;
+  color: #333;
+}

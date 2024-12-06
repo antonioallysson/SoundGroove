@@ -1,0 +1,12 @@
+<div class="cadastro-container">
+    <h2>Cadastrar</h2>
+    <form (ngSubmit)="onSubmit()" #cadastroForm="ngForm">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="name" required />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" required />
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required />
+        <button type="submit" [disabled]="!cadastroForm.valid">Cadastrar</button>
+    </form>
+</div>

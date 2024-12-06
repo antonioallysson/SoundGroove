@@ -1,0 +1,34 @@
+<div>
+  <h1>Busca de Músicas</h1>
+
+  <!-- Formulário de Pesquisa -->
+  <div class="search-container">
+    <input type="text" [(ngModel)]="query" placeholder="Digite o nome da música" />
+    <button (click)="onSearch()">Pesquisar</button>
+  </div>
+
+  <!-- Resultados da Pesquisa -->
+  <div *ngIf="results.length > 0">
+    <h2>Resultados:</h2>
+    <ul>
+      <li *ngFor="let track of results">
+        <img [src]="track.album.images[0]?.url" alt="Track Image"/>
+        <p>
+          <strong>{{ track.name }}</strong> - {{ track.artists[0]?.name }}
+        </p>
+        <button (click)="viewTrackDetails(track.id)">Ver Detalhes</button>
+        <audio [src]="track.preview_url" controls *ngIf="track.preview_url"></audio>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Detalhes da Música Selecionada -->
+  <div *ngIf="selectedTrack">
+    <h2>Detalhes da Música</h2>
+    <p><strong>Nome:</strong> {{ selectedTrack.name }}</p>
+    <p><strong>Artista:</strong> {{ selectedTrack.artists[0]?.name }}</p>
+    <p><strong>Álbum:</strong> {{ selectedTrack.album?.name }}</p>
+    <p><strong>Duração:</strong> {{ convertDuration(selectedTrack.duration_ms) }}</p>
+    <img [src]="selectedTrack.album?.images[0]?.url" alt="{{ selectedTrack.name }}" />
+  </div>
+</div>
