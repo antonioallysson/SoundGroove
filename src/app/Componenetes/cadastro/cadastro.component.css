@@ -1,0 +1,87 @@
+/* Estilo do container do formulário */
+.cadastro-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Cabeçalho do formulário */
+.cadastro-container h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Estilo das labels */
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Estilo dos inputs */
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Foco nos inputs */
+form input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Estilo do botão */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efeito de hover no botão */
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Estilo quando o botão estiver desabilitado */
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 500px) {
+  .cadastro-container {
+    padding: 20px;
+    margin: 30px auto;
+  }
+
+  .cadastro-container h2 {
+    font-size: 20px;
+  }
+
+  form input,
+  button {
+    font-size: 14px;
+  }
+}
