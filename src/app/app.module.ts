@@ -13,6 +13,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { SpotifyService } from './spotify.service';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 
+
 @NgModule({
   declarations: [
     AppComponent,

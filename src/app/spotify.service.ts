@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SpotifyService {
   private apiUrl = 'https://api.spotify.com/v1';
-  private accessToken = 'BQClf8jMTivEur1lRQw8MUrPBCdrLb8agbQjVPP4Bt0s-eERoom7mk8t99imWHMS4y8LH5q1wiL_WWwZ8Liyhgkqx22f4BTdKA1cBkv9gVKIhd9ihbo';
+  private accessToken = 'BQDxqb_kwGUmAl61Lq-W_rv83shpIK5UQ9kzrRo4yDBwQkBWWFBtByHuQT0BINDA2WLI5r3W0WS-MDnVSE65Ae9pHQ4s5U2XRc3m4n4NgXkNBlWDS28';
   private baseUrl = 'https://seu-backend.com/api'; // URL do backend
 
   
