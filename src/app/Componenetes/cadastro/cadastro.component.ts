@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../../api.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -10,13 +11,20 @@ export class CadastroComponent {
   email: string = '';
   password: string = '';
 
+  constructor(private apiService: ApiService) {} // Injeta o serviço
+
   onSubmit() {
-    // Aqui você pode salvar os dados em um backend ou local storage
-    alert(`Usuário ${this.name} cadastrado com sucesso!`);
-    console.log('Dados do usuário:', {
-      name: this.name,
-      email: this.email,
-      password: this.password,
-    });
+    const userData = { username: this.name, email: this.email, password: this.password };
+  
+    this.apiService.register(userData).subscribe(
+      (response) => {
+        console.log('Resposta do servidor:', response); // Verifique a resposta no console
+        alert(`Usuário ${this.name} cadastrado com sucesso!`);
+      },
+      (error) => {
+        alert('Erro ao cadastrar usuário.');
+        console.error('Erro do backend:', error);
+      }
+    );
   }
 }

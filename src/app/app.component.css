@@ -5,6 +5,15 @@ ul {
     overflow: hidden;
     background-color: #000000;
   }
+  ul span {
+    align-items: center;
+    justify-content: space-between;
+    display: block;
+  }
+span {
+  color: #FF4500;
+}
+
   h1 {
     color: #FF4500;
   }
@@ -13,6 +22,7 @@ ul {
   }
   li {
     float: right;
+    
   }
   
   li a {

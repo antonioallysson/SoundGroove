@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../../api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +10,22 @@ import { Component } from '@angular/core';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  constructor(private apiService: ApiService, private router: Router) {}
 
   onSubmit() {
-    // Simular validação
-    if (this.email === 'admin@example.com' && this.password === '123456') {
-      alert('Login bem-sucedido!');
-    } else {
-      alert('Email ou senha inválidos!');
-    }
+    const credentials = { email: this.email, password: this.password };
+
+    this.apiService.login(credentials).subscribe(
+      (response) => {
+        alert('Login bem-sucedido!');
+        console.log('Resposta do servidor:', response);
+        // Redireciona o usuário após login bem-sucedido
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        alert('Credenciais inválidas!');
+        console.error('Erro do backend:', error);
+      }
+    );
   }
 }
