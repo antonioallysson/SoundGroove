@@ -1,11 +1,3 @@
-/* Geral */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  margin: 0;
-  padding: 0;
-}
-
 /* Container Principal */
 div {
   max-width: 900px;
@@ -39,18 +31,27 @@ h1 {
 }
 
 .search-container button {
-  width: 20%;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #1db954;  /* Cor do Spotify */
-  color: white;
-  border: none;
-  border-radius: 4px;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #FF4500;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 }
 
+.search-container button:active {
+  background-color: #ff5518;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px)
+}
 .search-container button:hover {
-  background-color: #1ed760;
+  background-color: #d33800;
 }
 
 /* Resultados da Pesquisa */
@@ -76,17 +77,28 @@ li p {
 }
 
 li button {
-  padding: 6px 12px;
-  font-size: 14px;
-  background-color: #1db954;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #FF4500;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 }
 
 li button:hover {
-  background-color: #1ed760;
+  background-color: #d33800;
+}
+
+li button:active {
+  background-color: #ff5518;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 audio {
@@ -127,4 +139,41 @@ img {
 .selected-track h2 {
   text-align: center;
   color: #333;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #FF4500;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+button:hover {
+  background-color: #d33800;
+}
+
+button:active {
+  background-color: #ff5518;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }

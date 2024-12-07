@@ -7,8 +7,10 @@ import { Observable } from 'rxjs';
 })
 export class SpotifyService {
   private apiUrl = 'https://api.spotify.com/v1';
-  private accessToken = 'BQC20PwUe1ur2A76zbcVhat7Uq7fDc-n7O6GEzaoSCj3KnqRbHH2-2Epbzbcm3-dJozu6hEZDVbDZvw3yIuFyxeTTlMKix-qSl3xW8tc8kPp5tiGq5s';
+  private accessToken = 'BQClf8jMTivEur1lRQw8MUrPBCdrLb8agbQjVPP4Bt0s-eERoom7mk8t99imWHMS4y8LH5q1wiL_WWwZ8Liyhgkqx22f4BTdKA1cBkv9gVKIhd9ihbo';
+  private baseUrl = 'https://seu-backend.com/api'; // URL do backend
 
+  
   constructor(private http: HttpClient) {}
 
   // Pesquisa de músicas
@@ -27,4 +29,9 @@ export class SpotifyService {
     return this.http.get(url, { headers });
   }
   // Fim dos Detalhes
+
+  // Novo método para enviar avaliações
+  submitReview(review: { trackId: string; rating: number; comment: string; timestamp: Date }) {
+    return this.http.post(`${this.baseUrl}/reviews`, review);
+  }
 }

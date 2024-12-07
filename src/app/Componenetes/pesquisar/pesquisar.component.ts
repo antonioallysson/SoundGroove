@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SpotifyService } from '../../spotify.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-pesquisar',
@@ -9,9 +10,18 @@ import { SpotifyService } from '../../spotify.service';
 export class PesquisarComponent {
   query: string = '';
   results: any[] = [];
-  selectedTrack: any = null;  // Variável para armazenar a música selecionada
+  selectedTrack: any = null;
+  rating = new FormControl();
+  comentario: string = '';
 
-  constructor(private spotifyService: SpotifyService) {}
+  constructor(private spotifyService: SpotifyService) {
+    // Monitora mudanças no valor da avaliação
+    this.rating.valueChanges.subscribe((newRating) => {
+      if (this.selectedTrack) {
+        this.rateTrack(this.selectedTrack.id, newRating);
+      }
+    });
+  }
 
   onSearch(): void {
     if (this.query) {
@@ -20,13 +30,43 @@ export class PesquisarComponent {
       });
     }
   }
-  
+
   viewTrackDetails(trackId: string): void {
-    // Chama o método getTrackDetails para obter os detalhes da faixa
     this.spotifyService.getTrackDetails(trackId).subscribe((trackDetails) => {
-      this.selectedTrack = trackDetails;  // Armazena os detalhes da música na variável selectedTrack
+      this.selectedTrack = trackDetails;
+      this.rating.setValue(0);
     });
   }
+
+  submitReview(): void {
+    if (!this.selectedTrack) return;
+
+    const review = {
+      trackId: this.selectedTrack.id,
+      rating: this.rating.value,
+      comment: this.comentario,
+      timestamp: new Date()
+    };
+
+    console.log('Enviando avaliação:', review);
+    // Envia a avaliação ao serviço
+    this.spotifyService.submitReview(review).subscribe({
+      next: () => {
+        alert('Avaliação enviada com sucesso!');
+        this.comentario = '';
+      },
+      error: (err) => {
+        console.error('Erro ao enviar avaliação:', err);
+        alert('Ocorreu um erro ao enviar sua avaliação.');
+      }
+    });
+  }
+
+  rateTrack(trackId: string, rating: number): void {
+    console.log(`Faixa ${trackId} avaliada com ${rating} estrelas.`);
+    // Aqui você pode enviar a avaliação para o backend ou salvar localmente
+  }
+
   convertDuration(durationMs: number): string {
     const minutes = Math.floor(durationMs / 60000);
     const seconds = Math.floor((durationMs % 60000) / 1000);

@@ -26,5 +26,11 @@
     <p><strong>Álbum:</strong> {{ selectedTrack.album?.name }}</p>
     <p><strong>Duração:</strong> {{ convertDuration(selectedTrack.duration_ms) }}</p>
     <img [src]="selectedTrack.album?.images[0]?.url" alt="{{ selectedTrack.name }}" />
+    <p><strong>Avalie a música</strong></p>
+    <ngx-star-rating [formControl]="rating" [id]="'rating'" [disabled]="false"></ngx-star-rating>
+    <div>
+      <textarea [(ngModel)]="comentario" placeholder="Deixe seu comentário"></textarea>
+      <button (click)="submitReview()">Enviar Avaliação</button>
+    </div>
   </div>
 </div>
