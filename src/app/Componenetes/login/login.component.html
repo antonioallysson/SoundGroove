@@ -5,6 +5,7 @@
         <input type="email" id="email" name="email" [(ngModel)]="email" required />
         <label for="password">Senha:</label>
         <input type="password" id="password" name="password" [(ngModel)]="password" required />
+        <label for="">Não tem conta? Crie agora em <a routerLink="/cadastro">Cadastrar</a></label>
         <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
     </form>
 </div>
