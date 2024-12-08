@@ -8,15 +8,15 @@ import { Observable } from 'rxjs';
 export class ReviewService {
   private apiUrl = 'http://localhost:5000'; // URL da sua API
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Método para pegar as avaliações de um usuário
   getUserReviews(userId: number): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}/review/${userId}`);
   }
-// para buscar as avaliações de uma música específica.
-getReviewsByTrack(trackId: string): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/reviews/track/${trackId}`);
-}
-  
+  // para buscar as avaliações de uma música específica.
+  getReviewsByTrack(trackId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/reviews/track/${trackId}`);
+  }
+
 }

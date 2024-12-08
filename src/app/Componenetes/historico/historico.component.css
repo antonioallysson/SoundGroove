@@ -1,53 +1,63 @@
-/* Estilização do container geral */
-div {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 10px;
-    border-radius: 8px;
-  }
-  
-  /* Estilo para o título */
-  h2 {
-    color: #007acc; /* Azul ciano */
-    border-bottom: 2px solid #007acc;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-  }
-  
-  /* Estilo para cada avaliação */
-  div > div {
-    background-color: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.2s ease;
-  }
-  
-  div > div:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Estilização dos textos */
-  p {
-    margin: 5px 0;
-    line-height: 1.5;
-    font-size: 1rem;
-  }
-  
-  /* Estilo para os títulos de detalhes */
-  p strong {
-    color: #333;
-  }
-  
-  /* Estilo para a mensagem de avaliações inexistentes */
-  div > p {
-    font-style: italic;
-    color: #999;
-    text-align: center;
-    font-size: 1.2rem;
-    margin-top: 20px;
-  }
-  
+/* Estilos gerais */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #fff;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Título principal */
+h2 {
+  color: #f45000;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Contêiner para os cards de avaliação */
+.reviews-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os cards quebrem para a linha seguinte */
+  justify-content: center; /* Centraliza os cards */
+}
+
+/* Card de avaliação */
+.review-card {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  transition: transform 0.3s;
+  width: 250px; /* Defina a largura dos cards */
+  flex-grow: 1; /* Faz com que os cards ocupem o espaço disponível */
+}
+
+/* Efeito de hover nos cards */
+.review-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Estilo dos parágrafos dentro dos cards */
+.review-card p {
+  font-size: 1em;
+  margin: 10px 0;
+  color: #fff;
+}
+
+.review-card p strong {
+  color: #f45000; /* Cor laranja para os títulos */
+}
+
+/* Caso o usuário não tenha feito avaliações */
+div p {
+  text-align: center;
+  font-size: 1.2em;
+  color: #ccc;
+}

@@ -17,9 +17,17 @@ footer {
   font-size: 22px;
   padding: 15px 0;
 }
-header h2 {
+
+
+header h2 a {
+  text-decoration: none;
+  color: orangered;
+  padding: 0 15px;
+  font-size: 20px;
+  text-transform: inherit;
   font-size: 30px;
 }
+
 header {
   align-items: center;
   display: flex;
