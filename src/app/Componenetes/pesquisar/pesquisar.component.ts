@@ -67,7 +67,7 @@ export class PesquisarComponent {
       },
       error: (err) => {
         console.error('Erro ao enviar avaliação:', err);
-        alert('Ocorreu um erro ao enviar sua avaliação.');
+        alert('É preciso está logado para avaliar.');
       }
     });
   }
