@@ -14,4 +14,9 @@ export class ReviewService {
   getUserReviews(userId: number): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}/review/${userId}`);
   }
+// para buscar as avaliações de uma música específica.
+getReviewsByTrack(trackId: string): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/reviews/track/${trackId}`);
+}
+  
 }

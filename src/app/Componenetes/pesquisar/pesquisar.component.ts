@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { SpotifyService } from '../../spotify.service';
+import { SpotifyService } from '../../servicos/spotify.service'; 
 import { FormControl } from '@angular/forms';
-import { AuthService } from '../../servicos/auth.service'; // Importe o AuthService
+import { AuthService } from '../../servicos/auth.service';  // Importe o AuthService
 
 @Component({
   selector: 'app-pesquisar',

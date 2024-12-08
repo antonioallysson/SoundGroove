@@ -124,6 +124,28 @@ app.get('/review/:userId', (req, res) => {
     });
 });
 
+// Rota para buscar avaliações de uma música específica
+app.get('/reviews/track/:trackId', (req, res) => {
+    const trackId = req.params.trackId;
+    console.log('Track ID recebido:', trackId); // Log do ID recebido
+    // Query com JOIN para incluir o nome do usuário
+    const query = `
+        SELECT reviews.*, users.username 
+        FROM reviews 
+        JOIN users ON reviews.user_id = users.id 
+        WHERE reviews.track_id = ?
+    `;
+
+    db.query(query, [trackId], (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar avaliações:', err);
+            return res.status(500).send('Erro ao buscar avaliações');
+        }
+        console.log('Resultados encontrados:', results); // Log dos resultados
+        res.json(results); // Envia as avaliações para o frontend
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });

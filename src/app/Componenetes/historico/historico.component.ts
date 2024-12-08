@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../servicos/auth.service';
-import { ReviewService } from '../../../review.service';
+import { ReviewService } from '../../servicos/review.service';
 
 @Component({
   selector: 'app-historico',

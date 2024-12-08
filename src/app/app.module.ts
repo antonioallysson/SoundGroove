@@ -10,10 +10,11 @@ import { PesquisarComponent } from './Componenetes/pesquisar/pesquisar.component
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
-import { SpotifyService } from './spotify.service';
+import { SpotifyService } from './servicos/spotify.service';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { LogoutComponent } from './Componenetes/logout/logout.component';
 import { HistoricoComponent } from './Componenetes/historico/historico.component';
+import { AvaliacoesMusicaComponent } from './Componenetes/avaliacoes-musica/avaliacoes-musica.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { HistoricoComponent } from './Componenetes/historico/historico.component
     PesquisarComponent,
     LogoutComponent,
     HistoricoComponent,
+    AvaliacoesMusicaComponent,
     
   ],
   imports: [

@@ -1,15 +1,19 @@
 <header>
+  <div class="logo">
+    <h2>SoundGroove</h2>
+  </div>
   <nav>
     <ul>
-      <span>SoundGroove</span>
       <li><a routerLink="/login">Login</a></li>
       <li><a routerLink="/home">Inicio</a></li>
       <li><a routerLink="/busca">Busca</a></li>
+      <li><a routerLink="/teste">Histórico</a></li>
+      <app-logout></app-logout>
+      <router-outlet></router-outlet>
     </ul>
   </nav>
 </header>
-
-<app-logout></app-logout>
-<app-historico></app-historico>
+<footer>
+  <h6>&copy; SoundGroove Copyright</h6>
+</footer>
 <router-outlet></router-outlet>
-

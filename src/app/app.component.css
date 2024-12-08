@@ -1,39 +1,48 @@
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #000000;
-  }
-  ul span {
-    align-items: center;
-    justify-content: space-between;
-    display: block;
-  }
-span {
-  color: #FF4500;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-  h1 {
-    color: #FF4500;
-  }
-  head {
-    background-color: #FF4500;
-  }
-  li {
-    float: right;
-    
-  }
-  
-  li a {
-    display: block;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  /* Change the link color to #111 (black) on hover */
-  li a:hover {
-    background-color: #FF4500;
-  }
+header,footer {
+  background-color: black;
+  color: orangered;
+  width: 100%;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  font-size: 22px;
+  padding: 15px 0;
+}
+header h2 {
+  font-size: 30px;
+}
+header {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline-block;
+}
+
+nav ul a {
+  text-decoration: none;
+  color: orangered;
+  padding: 0 15px;
+  font-size: 20px;
+  text-transform: inherit;
+}
+nav ul app-logout {
+  display: inline-block;
+}
+
+nav ul a:hover {
+  color: #ffffff;
+}

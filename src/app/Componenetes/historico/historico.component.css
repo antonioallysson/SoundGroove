@@ -1,0 +1,53 @@
+/* Estilização do container geral */
+div {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  /* Estilo para o título */
+  h2 {
+    color: #007acc; /* Azul ciano */
+    border-bottom: 2px solid #007acc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  
+  /* Estilo para cada avaliação */
+  div > div {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease;
+  }
+  
+  div > div:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Estilização dos textos */
+  p {
+    margin: 5px 0;
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+  
+  /* Estilo para os títulos de detalhes */
+  p strong {
+    color: #333;
+  }
+  
+  /* Estilo para a mensagem de avaliações inexistentes */
+  div > p {
+    font-style: italic;
+    color: #999;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+  

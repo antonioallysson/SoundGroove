@@ -1,6 +1,4 @@
-<header>
-    <div *ngIf="userName">
-      <span>Bem-vindo, {{ userName }}!</span>
-      <button (click)="logout()">Sair</button>
-    </div>
-  </header> 
+<div *ngIf="userName">
+  <span>Olá, {{ userName }}!</span><br>
+  <button (click)="logout()">logout</button>
+</div>

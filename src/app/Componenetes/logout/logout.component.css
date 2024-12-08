@@ -1,0 +1,10 @@
+button {
+    color: white;
+    background-color: orangered;
+    border: none;
+    width: 90px;
+    height: 30px;
+    text-transform: inherit;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
