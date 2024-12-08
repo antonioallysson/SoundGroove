@@ -46,7 +46,7 @@ export class PesquisarComponent {
 
   submitReview(): void {
     if (!this.selectedTrack) return;
-  
+
     const userId = this.authService.getUserId();
     const review = {
       trackId: this.selectedTrack.id,
@@ -56,9 +56,9 @@ export class PesquisarComponent {
       created_at: new Date(),
       track_name: this.selectedTrack.name, // Adiciona o nome da música
     };
-  
+
     console.log('Enviando avaliação:', review);
-  
+
     // Envia a avaliação ao serviço
     this.spotifyService.submitReview(review).subscribe({
       next: () => {
@@ -71,7 +71,6 @@ export class PesquisarComponent {
       }
     });
   }
-  
 
   rateTrack(trackId: string, rating: number): void {
     console.log(`Faixa ${trackId} avaliada com ${rating} estrelas.`);

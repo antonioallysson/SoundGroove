@@ -30,7 +30,7 @@
     <ngx-star-rating [formControl]="rating" [id]="'rating'" [disabled]="false"></ngx-star-rating>
     <div>
       <textarea [(ngModel)]="comentario" placeholder="Deixe seu comentário"></textarea>
-      <button (click)="submitReview()">Enviar Avaliação</button>
+      <button (click)="submitReview()">Enviar Avaliação</button><br>
 
       <app-avaliacoes-musica [trackId]="selectedTrack.id"></app-avaliacoes-musica>
 
