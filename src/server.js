@@ -50,7 +50,6 @@ app.post('/register', (req, res) => {
     });
 });
 
-// Login de usuário
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
     const query = 'SELECT * FROM users WHERE email = ?';
@@ -60,6 +59,7 @@ app.post('/login', (req, res) => {
             res.status(500).send('Erro ao logar');
             return;
         }
+        console.log('Resultados da consulta:', results);
 
         if (results.length > 0) {
             // Verifica se a senha inserida corresponde ao hash armazenado
@@ -71,32 +71,45 @@ app.post('/login', (req, res) => {
                 }
 
                 if (isMatch) {
-                    res.status(200).send({ message: 'Login bem-sucedido', userId: results[0].id });
+                    res.status(200).send({
+                        message: 'Login bem-sucedido',
+                        userId: results[0].id,
+                        name: results[0].username, // Incluindo o nome do usuário
+                    });
                 } else {
-                    res.status(401).send('Credenciais inválidas');
+                    res.status(401).send({ message: 'Credenciais inválidas' });
                 }
             });
         } else {
-            res.status(401).send('Credenciais inválidas');
+            res.status(401).send({ message: 'Credenciais inválidas' });
         }
     });
 });
-
-// Avaliação
+// Rota para receber e salvar avaliação
 app.post('/review', (req, res) => {
-    const { trackId, userId, rating, comment } = req.body;
-    const query = 'INSERT INTO reviews (track_id, user_id, rating, comment) VALUES (?, ?, ?, ?)';
-    db.query(query, [trackId, userId, rating, comment], (err, result) => {
-        if (err) {
-            console.error('Erro ao salvar avaliação:', err);
-            res.status(500).send('Erro ao salvar avaliação');
-            return;
-        }
-        res.status(201).send('Avaliação salva com sucesso!');
+    const { trackId, userId, rating, comment, created_at } = req.body;
+  
+    // Validação
+    if (rating === null || rating === undefined || rating === 0) {
+      return res.status(400).json({ message: 'A avaliação precisa ter uma quantidade de estrelas' });
+    }
+  
+    if (!comment || comment.trim() === '') {
+      return res.status(400).json({ message: 'O comentário não pode ser vazio' });
+    }
+  
+    // Cria a query SQL para inserir a avaliação
+    const query = 'INSERT INTO reviews (track_id, user_id, rating, comment, created_at) VALUES (?, ?, ?, ?, ?)';
+    
+    db.query(query, [trackId, userId, rating, comment, created_at], (err, result) => {
+      if (err) {
+        console.error('Erro ao salvar avaliação:', err);
+        return res.status(500).send('Erro ao salvar avaliação');
+      }
+      res.status(201).json({ message: 'Avaliação salva com sucesso!' });
     });
-});
+  });
 
-// Iniciar servidor
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });

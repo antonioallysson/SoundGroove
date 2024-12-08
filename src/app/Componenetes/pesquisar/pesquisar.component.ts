@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SpotifyService } from '../../spotify.service';
 import { FormControl } from '@angular/forms';
+import { AuthService } from '../../servicos/auth.service'; // Importe o AuthService
 
 @Component({
   selector: 'app-pesquisar',
@@ -14,7 +15,10 @@ export class PesquisarComponent {
   rating = new FormControl();
   comentario: string = '';
 
-  constructor(private spotifyService: SpotifyService) {
+  constructor(
+    private spotifyService: SpotifyService,
+    private authService: AuthService // Injete o AuthService
+  ) {
     // Monitora mudanças no valor da avaliação
     this.rating.valueChanges.subscribe((newRating) => {
       if (this.selectedTrack) {
@@ -40,20 +44,44 @@ export class PesquisarComponent {
 
   submitReview(): void {
     if (!this.selectedTrack) return;
+  
+    const userId = this.authService.getUserId(); // Recupera o userId do AuthService
+    if (userId === null) {
+      alert('Você precisa estar logado para enviar uma avaliação!');
+      return;
+    }
+    if (!this.selectedTrack) return;
 
+    const rating = this.rating.value;
+    const comment = this.comentario;
+
+    // Validações
+  if (rating === null || rating === 0) {
+    alert('Você precisa selecionar uma quantidade de estrelas para a avaliação!');
+    return;
+  }
+
+  if (!comment || comment.trim() === '') {
+    alert('Você precisa escrever um comentário para a avaliação!');
+    return;
+  }
+
+  
     const review = {
       trackId: this.selectedTrack.id,
       rating: this.rating.value,
       comment: this.comentario,
-      timestamp: new Date()
+      userId: userId, // Adiciona o userId na avaliação
+      created_at: new Date()
     };
-
+  
     console.log('Enviando avaliação:', review);
+  
     // Envia a avaliação ao serviço
     this.spotifyService.submitReview(review).subscribe({
       next: () => {
         alert('Avaliação enviada com sucesso!');
-        this.comentario = '';
+        this.comentario = ''; // Limpa o comentário após envio
       },
       error: (err) => {
         console.error('Erro ao enviar avaliação:', err);
@@ -61,6 +89,7 @@ export class PesquisarComponent {
       }
     });
   }
+  
 
   rateTrack(trackId: string, rating: number): void {
     console.log(`Faixa ${trackId} avaliada com ${rating} estrelas.`);

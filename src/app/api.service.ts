@@ -18,7 +18,8 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/login`, credentials);
   }
 
-  saveReview(reviewData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/review`, reviewData);
-  }
+  saveReview(reviewData: any, userId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/review`, { ...reviewData, userId });
+}
+
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../servicos/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,12 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email: string = '';
   password: string = '';
-  constructor(private apiService: ApiService, private router: Router) {}
+
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   onSubmit() {
     const credentials = { email: this.email, password: this.password };
@@ -19,7 +25,13 @@ export class LoginComponent {
       (response) => {
         alert('Login bem-sucedido!');
         console.log('Resposta do servidor:', response);
-        // Redireciona o usuário após login bem-sucedido
+
+        // Salva o nome e o userId no AuthService
+        const firstName = response.name.split(' ')[0];
+        this.authService.setUserName(firstName);
+        this.authService.setUserId(response.userId); // Armazena o userId
+
+        // Redireciona o usuário para a página inicial
         this.router.navigate(['/home']);
       },
       (error) => {

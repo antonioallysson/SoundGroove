@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { SpotifyService } from './spotify.service';
 import { NgxStarRatingModule } from 'ngx-star-rating';
+import { LogoutComponent } from './Componenetes/logout/logout.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
     CadastroComponent,
     HomeComponent,
     PesquisarComponent,
+    LogoutComponent,
     
   ],
   imports: [
