@@ -13,6 +13,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { SpotifyService } from './spotify.service';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { LogoutComponent } from './Componenetes/logout/logout.component';
+import { HistoricoComponent } from './Componenetes/historico/historico.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { LogoutComponent } from './Componenetes/logout/logout.component';
     HomeComponent,
     PesquisarComponent,
     LogoutComponent,
+    HistoricoComponent,
     
   ],
   imports: [

@@ -13,8 +13,8 @@ app.use(cors());
 // Configuração do MySQL
 const db = mysql.createConnection({
     host: 'localhost',
-    user: 'root', 
-    password: '', 
+    user: 'root',
+    password: '',
     database: 'soundgroove',
 });
 
@@ -29,7 +29,7 @@ db.connect((err) => {
 // Cadastro de usuário
 app.post('/register', (req, res) => {
     const { username, email, password } = req.body;
-    
+
     // Criptografando a senha
     bcrypt.hash(password, 10, (err, hashedPassword) => {
         if (err) {
@@ -88,27 +88,41 @@ app.post('/login', (req, res) => {
 // Rota para receber e salvar avaliação
 app.post('/review', (req, res) => {
     const { trackId, userId, rating, comment, created_at } = req.body;
-  
+
     // Validação
     if (rating === null || rating === undefined || rating === 0) {
-      return res.status(400).json({ message: 'A avaliação precisa ter uma quantidade de estrelas' });
+        return res.status(400).json({ message: 'A avaliação precisa ter uma quantidade de estrelas' });
     }
-  
+
     if (!comment || comment.trim() === '') {
-      return res.status(400).json({ message: 'O comentário não pode ser vazio' });
+        return res.status(400).json({ message: 'O comentário não pode ser vazio' });
     }
-  
+
     // Cria a query SQL para inserir a avaliação
     const query = 'INSERT INTO reviews (track_id, user_id, rating, comment, created_at) VALUES (?, ?, ?, ?, ?)';
-    
+
     db.query(query, [trackId, userId, rating, comment, created_at], (err, result) => {
-      if (err) {
-        console.error('Erro ao salvar avaliação:', err);
-        return res.status(500).send('Erro ao salvar avaliação');
-      }
-      res.status(201).json({ message: 'Avaliação salva com sucesso!' });
+        if (err) {
+            console.error('Erro ao salvar avaliação:', err);
+            return res.status(500).send('Erro ao salvar avaliação');
+        }
+        res.status(201).json({ message: 'Avaliação salva com sucesso!' });
     });
-  });
+});
+
+// Rota para pegar todas as avaliações de um usuário
+app.get('/review/:userId', (req, res) => {
+    const userId = req.params.userId;
+    const query = 'SELECT * FROM reviews WHERE user_id = ?';
+
+    db.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar avaliações:', err);
+            return res.status(500).send('Erro ao buscar avaliações');
+        }
+        res.json(results); // Envia as avaliações para o frontend
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);

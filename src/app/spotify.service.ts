@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SpotifyService {
   private apiUrl = 'https://api.spotify.com/v1';
-  private accessToken = 'BQB-1lBYZIrc5rkcRtTCsKFDkikAapDpzG0UbHJfDFh9AWK4TEJPBd5qiM99YDMQx8-9TiIqdPsgjLMGsNKyAwstcNFAmxPMqqABnADOL6bcDDjyusw';
+  private accessToken = ' BQAdbvZpITZHxn7hyxoEyn27GxFDPeIat_sbM3Mnl5ODldoBllnfA0_v5XD2K_-UK9fLDEu6Gk5q5aOccFlxMhw6LP1HQ2lVdcpEcAjHA4QbqP628t0';
   private baseUrl = 'http://localhost:5000'; //link do BD
   
   constructor(private http: HttpClient) {}

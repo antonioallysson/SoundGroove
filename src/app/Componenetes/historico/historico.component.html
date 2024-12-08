@@ -1,0 +1,12 @@
+<div *ngIf="userReviews.length > 0">
+  <h2>Histórico de Avaliações</h2>
+  <div *ngFor="let review of userReviews">
+    <p><strong>Música:</strong> {{ review.track_id }}</p> <!-- Exemplo de como exibir o ID da música -->
+    <p><strong>Avaliação:</strong> {{ review.rating }} estrelas</p>
+    <p><strong>Comentário:</strong> {{ review.comment }}</p>
+    <p><strong>Data:</strong> {{ review.created_at | date }}</p> <!-- Exibe a data de criação -->
+  </div>
+</div>
+<div *ngIf="userReviews.length === 0">
+  <p>Você ainda não fez nenhuma avaliação.</p>
+</div>
