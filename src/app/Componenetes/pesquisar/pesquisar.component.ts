@@ -14,6 +14,7 @@ export class PesquisarComponent {
   selectedTrack: any = null;
   rating = new FormControl();
   comentario: string = '';
+  track_name: string = '';
 
   constructor(
     private spotifyService: SpotifyService,
@@ -38,6 +39,7 @@ export class PesquisarComponent {
   viewTrackDetails(trackId: string): void {
     this.spotifyService.getTrackDetails(trackId).subscribe((trackDetails) => {
       this.selectedTrack = trackDetails;
+      this.track_name = trackDetails.name; // Armazena o nome da música
       this.rating.setValue(0);
     });
   }
@@ -45,34 +47,14 @@ export class PesquisarComponent {
   submitReview(): void {
     if (!this.selectedTrack) return;
   
-    const userId = this.authService.getUserId(); // Recupera o userId do AuthService
-    if (userId === null) {
-      alert('Você precisa estar logado para enviar uma avaliação!');
-      return;
-    }
-    if (!this.selectedTrack) return;
-
-    const rating = this.rating.value;
-    const comment = this.comentario;
-
-    // Validações
-  if (rating === null || rating === 0) {
-    alert('Você precisa selecionar uma quantidade de estrelas para a avaliação!');
-    return;
-  }
-
-  if (!comment || comment.trim() === '') {
-    alert('Você precisa escrever um comentário para a avaliação!');
-    return;
-  }
-
-  
+    const userId = this.authService.getUserId();
     const review = {
       trackId: this.selectedTrack.id,
       rating: this.rating.value,
       comment: this.comentario,
-      userId: userId, // Adiciona o userId na avaliação
-      created_at: new Date()
+      userId: userId,
+      created_at: new Date(),
+      track_name: this.selectedTrack.name, // Adiciona o nome da música
     };
   
     console.log('Enviando avaliação:', review);

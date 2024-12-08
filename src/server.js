@@ -87,7 +87,7 @@ app.post('/login', (req, res) => {
 });
 // Rota para receber e salvar avaliação
 app.post('/review', (req, res) => {
-    const { trackId, userId, rating, comment, created_at } = req.body;
+    const { trackId, userId, rating, comment, created_at, track_name } = req.body;
 
     // Validação
     if (rating === null || rating === undefined || rating === 0) {
@@ -99,9 +99,9 @@ app.post('/review', (req, res) => {
     }
 
     // Cria a query SQL para inserir a avaliação
-    const query = 'INSERT INTO reviews (track_id, user_id, rating, comment, created_at) VALUES (?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO reviews (track_id, user_id, rating, comment, created_at, track_name) VALUES (?, ?, ?, ?, ?, ?)';
 
-    db.query(query, [trackId, userId, rating, comment, created_at], (err, result) => {
+    db.query(query, [trackId, userId, rating, comment, created_at, track_name], (err, result) => {
         if (err) {
             console.error('Erro ao salvar avaliação:', err);
             return res.status(500).send('Erro ao salvar avaliação');
