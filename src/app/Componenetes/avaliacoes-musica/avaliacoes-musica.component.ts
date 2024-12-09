@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ReviewService } from '../../servicos/review.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-avaliacoes-musica',
@@ -12,19 +13,29 @@ export class AvaliacoesMusicaComponent implements OnInit {
   // Armazena as avaliações para a música
   reviews: any[] = []; 
 
-  constructor(private reviewService: ReviewService) {}
-  
+
+  constructor(private reviewService: ReviewService, private router: Router) {}
   // Popula a lista de avaliações
+
   ngOnInit(): void {
-    if (this.trackId) {
-      this.reviewService.getReviewsByTrack(this.trackId).subscribe({
-        next: (reviews) => {
-          this.reviews = reviews; 
-        },
-        error: (err) => {
-          console.error('Erro ao buscar avaliações:', err);
-        }
-      });
-    }
+    this.fetchReviews();
+  }
+
+  fetchReviews(): void {
+    this.reviewService.getReviewsByTrack(this.trackId).subscribe(
+      (data: any) => {
+        this.reviews = data;
+      },
+      (error) => {
+        console.error('Erro ao buscar avaliações:', error);
+      }
+    );
+  }
+
+  onNewReviewSubmitted(): void {
+    // Recarrega a rota atual
+    this.router.navigateByUrl('/busca', { skipLocationChange: true }).then(() => {
+      this.fetchReviews(); // Recarrega as avaliações
+    });
   }
 }

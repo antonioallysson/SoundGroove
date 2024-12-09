@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, viewChild } from '@angular/core';
 import { SpotifyService } from '../../servicos/spotify.service'; 
 import { FormControl } from '@angular/forms';
 import { AuthService } from '../../servicos/auth.service';  // Importe o AuthService
+import { AvaliacoesMusicaComponent } from '../avaliacoes-musica/avaliacoes-musica.component';
 
 @Component({
   selector: 'app-pesquisar',
@@ -15,6 +16,8 @@ export class PesquisarComponent {
   rating = new FormControl();
   comentario: string = '';
   track_name: string = '';
+
+  @ViewChild(AvaliacoesMusicaComponent)avaliacoesMusicaComponent!: AvaliacoesMusicaComponent;
 
   constructor(
     private spotifyService: SpotifyService,
@@ -68,6 +71,11 @@ export class PesquisarComponent {
       next: () => {
         alert('Avaliação enviada com sucesso!');
         this.comentario = '';
+
+        // Atualiza as avaliações no componente avaliacoes-musica
+        if (this.avaliacoesMusicaComponent) {
+          this.avaliacoesMusicaComponent.onNewReviewSubmitted();
+        }
       },
       error: (err) => {
         console.error('Erro ao enviar avaliação:', err);
