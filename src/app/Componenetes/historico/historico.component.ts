@@ -8,7 +8,8 @@ import { ReviewService } from '../../servicos/review.service';
   styleUrl: './historico.component.css'
 })
 export class HistoricoComponent implements OnInit {
-  userReviews: any[] = []; // Aqui você armazenará as avaliações do usuário
+  // guarda as avaliações do usuário.
+  userReviews: any[] = []; 
   
   constructor(
     private authService: AuthService,
@@ -16,13 +17,17 @@ export class HistoricoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const userId = this.authService.getUserId(); // Pega o userId do AuthService
+
+    // Pega o userId do AuthService do usuario que está logado.
+    const userId = this.authService.getUserId(); 
 
     if (userId !== null) {
       this.reviewService.getUserReviews(userId).subscribe({
         next: (reviews) => {
-          this.userReviews = reviews; // Armazena as avaliações retornadas pelo backend
+           // Armazena as avaliações retornadas pelo backend
+          this.userReviews = reviews;
         },
+        //se o userID nao foi encontrado, ele nao vai apresentar o historico do usuario.
         error: (err) => {
           console.error('Erro ao carregar histórico de avaliações:', err);
         }

@@ -31,7 +31,7 @@
     <div>
       <textarea [(ngModel)]="comentario" placeholder="Deixe seu comentário"></textarea>
       <button (click)="submitReview()">Enviar Avaliação</button><br>
-
+      <!-- isso vem do componente avaliacoes-musica -->
       <app-avaliacoes-musica [trackId]="selectedTrack.id"></app-avaliacoes-musica>
 
     </div>

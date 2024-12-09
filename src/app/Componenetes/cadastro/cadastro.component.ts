@@ -10,17 +10,17 @@ export class CadastroComponent {
   name: string = '';
   email: string = '';
   password: string = '';
-  confirmPassword: string = ''; // Adicionando a variável para confirmação de senha
+  confirmPassword: string = '';
 
   constructor(private apiService: ApiService) {}
-
+  //verifica se as duas senhas sao iguais, se for, o usuario é cadastrado no sistema.
   onSubmit() {
-    if (this.password === this.confirmPassword) {  // Verifica se as senhas coincidem
+    if (this.password === this.confirmPassword) {  
       const userData = { username: this.name, email: this.email, password: this.password };
 
       this.apiService.register(userData).subscribe(
         (response) => {
-          console.log('Resposta do servidor:', response);
+          // console.log('Resposta do servidor:', response);
           alert(`Usuário ${this.name} cadastrado com sucesso!`);
         },
         (error) => {

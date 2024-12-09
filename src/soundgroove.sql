@@ -1,31 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 08/12/2024 às 23:07
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Banco de dados: `soundgroove`
---
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `reviews`
---
 
 CREATE TABLE `reviews` (
   `id` int(11) NOT NULL,
@@ -36,10 +11,6 @@ CREATE TABLE `reviews` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `track_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `reviews`
---
 
 INSERT INTO `reviews` (`id`, `track_id`, `user_id`, `rating`, `comment`, `created_at`, `track_name`) VALUES
 (15, '0bPP5cDG1ZnbAVCEa3ZbQ1', 20, 5, 'ainnn', '2024-12-08 19:16:30', 'Só Fé'),
@@ -58,12 +29,6 @@ INSERT INTO `reviews` (`id`, `track_id`, `user_id`, `rating`, `comment`, `create
 (28, '7F25roCtYi55JouckaayPC', 19, 5, 'toppp', '2024-12-09 00:43:29', 'Judas'),
 (29, '3H7eBmcTJyuEMStfmKuLmG', 19, 3, 'bbb', '2024-12-09 00:49:15', 'A Danada Me Ligando');
 
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `users`
---
-
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -72,61 +37,26 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `users`
---
-
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
 (19, 'Antonio Allysson Cordeiro Do Nascimento', 'antonioallysson2020@gmail.com', '$2b$10$T7AK1ouAasbrTmxrSmExXegUz26qLFtJj8RNJXrYwXTIlkFKQjmSy', '2024-12-08 12:03:28'),
 (20, 'a', 'antonniipo@gmail.com', '$2b$10$8LqFVEoqNsEqSCmVBFbZXuOykhlnkkRKYyyfJVtPOv80JaMkHzSfW', '2024-12-08 12:44:43'),
 (22, 'zamorano', 'zamorano@gmail.com', '$2b$10$px0Uvq7SCoivunWd2oMucOvxvOAC1h1kq9Xl9HE8X1uOAlwES9ZKq', '2024-12-08 20:34:27'),
 (23, 'SoundGroove', 'SoundGroove', '$2b$10$T.uuZLRCaZu5HfbOQgwnQe8u9ev23zYBjpa5keMV4HFUdXv72v.XK', '2024-12-08 20:43:04');
 
---
--- Índices para tabelas despejadas
---
-
---
--- Índices de tabela `reviews`
---
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
---
--- Índices de tabela `users`
---
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
---
--- AUTO_INCREMENT para tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `reviews`
---
 ALTER TABLE `reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
---
--- AUTO_INCREMENT de tabela `users`
---
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
---
--- Restrições para tabelas despejadas
---
-
---
--- Restrições para tabelas `reviews`
---
 ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

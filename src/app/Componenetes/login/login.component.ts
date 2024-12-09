@@ -24,7 +24,7 @@ export class LoginComponent {
     this.apiService.login(credentials).subscribe(
       (response) => {
         alert('Login bem-sucedido!');
-        console.log('Resposta do servidor:', response);
+        // console.log('Resposta do servidor:', response);
 
         // Salva o nome e o userId no AuthService
         const firstName = response.name.split(' ')[0];
