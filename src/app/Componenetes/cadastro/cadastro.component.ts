@@ -11,6 +11,7 @@ export class CadastroComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  showPassword: boolean = false; // Controle da visibilidade da senha
 
   constructor(private apiService: ApiService) {}
   //verifica se as duas senhas sao iguais, se for, o usuario é cadastrado no sistema.
@@ -31,5 +32,8 @@ export class CadastroComponent {
     } else {
       alert('As senhas não coincidem!');
     }
+  }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }
