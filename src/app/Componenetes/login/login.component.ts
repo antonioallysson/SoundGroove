@@ -6,17 +6,18 @@ import { AuthService } from '../../servicos/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  showPassword: boolean = false; // Controle da visibilidade da senha
 
   constructor(
     private apiService: ApiService,
     private router: Router,
     private authService: AuthService
-  ) { }
+  ) {}
 
   onSubmit() {
     const credentials = { email: this.email, password: this.password };
@@ -24,7 +25,6 @@ export class LoginComponent {
     this.apiService.login(credentials).subscribe(
       (response) => {
         alert('Login bem-sucedido!');
-        // console.log('Resposta do servidor:', response);
 
         // Salva o nome e o userId no AuthService
         const firstName = response.name.split(' ')[0];
@@ -35,9 +35,14 @@ export class LoginComponent {
         this.router.navigate(['/home']);
       },
       (error) => {
-        alert('Credenciais inválidas!');
-        console.error('Erro do backend:', error);
+        alert('Crie uma conta ou verifique foi digitado corretamente!');
+        // console.error('Erro do backend:', error);
       }
     );
+  }
+
+  // Alterna a visibilidade da senha
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }
